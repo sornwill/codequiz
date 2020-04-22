@@ -1,0 +1,20 @@
+body {
+    text-align: center;
+    font-size: 18px;
+}
+
+h1 {
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+#questions{
+    text-align: center;
+    margin: 5%;
+    border: 3px solid black;
+}
+
+#A, #B, #C, #D {
+    margin: 5%;
+}
