@@ -15,11 +15,16 @@
     <header>
         <h1> Code Quiz !</h1>
     </header>
-    <!-- Intro/Questions -->
-    <section id = "main-container"> 
-        <p> Intro/Questions </p>
-   
-   <!-- Answers -->
+
+    <!-- Intro/Questions-->
+    <section id="container">
+        <div id="intro-questions"></div>
+    </section>
+    <button id="start-btn" style="display: none;"> Start! </button>
+    <!-- Answer Container -->
+    <section id = "answer-container"> 
+        
+        <!-- Answers -->
         <div id="answer-btns">
             <button id="A" class="btn btn-secondary" type="button"> A. Answer </button>
             <button id="B" class="btn btn-secondary" type="button"> B. Answer </button>
@@ -29,13 +34,11 @@
         </div>
    
         <div class="controls">
-            <button id="start-btn"> Start </button>
+            
             <button id="next-btn"> Next </button>
         </div>
         <!-- Timer -->
-        <h5 class="timer">
-            
-        </h5>
+        <h5 class="timer"></h5>
 
 
         <script src="Assets/javascript/script.js"></script>

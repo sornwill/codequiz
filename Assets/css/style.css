@@ -13,10 +13,11 @@ h5 {
     margin-top: 5%;
 }
 
-#questions{
+#answer-container, #container{
     text-align: center;
-    margin: 5%;
+    margin: 10%;
     border: 3px solid black;
+    border-radius: 20%;
 }
 
 #A, #B, #C, #D {
