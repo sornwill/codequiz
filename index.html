@@ -28,13 +28,18 @@
         
         <!-- Answers -->
         <div id="answer-btns">
-            <button id="A" class="btn btn-secondary" type="button"> A. Answer </button>
-            <button id="B" class="btn btn-secondary" type="button"> B. Answer </button>
+            <button id="A" class="btn btn-secondary" type="button" onclick="checkAnswer('A')"> A. Answer </button>
             <br>
-            <button id="C" class="btn btn-secondary" type="button"> C. Answer </button>
-            <button id="D" class="btn btn-secondary" type="button"> D. Answer </button>
+            <button id="B" class="btn btn-secondary" type="button" onclick="checkAnswer('B')"> B. Answer </button>
+            <br>
+            <button id="C" class="btn btn-secondary" type="button" onclick="checkAnswer('C')"> C. Answer </button>
+            <br>
+            <button id="D" class="btn btn-secondary" type="button" onclick="checkAnswer('D')"> D. Answer </button>
         </div>
-   
+        
+        <div id="answer-status">
+        </div>
+
         <div class="controls">
             
             <button id="next-btn"> Next </button>

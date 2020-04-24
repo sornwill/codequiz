@@ -1,9 +1,14 @@
-var timer = document.getElementsByClassName(".timer");
-var questions = document.getElementById("intro-container");
-var answers = document.getElementById("answer-btns");
-var controls = document.getElementsByClassName(".controls");
-var startbtn = document.getElementById("start-btn");
-var nextbtn = document.getElementById("next-btn");
+const timer = document.getElementsByClassName(".timer");
+const questions = document.getElementById("intro-container");
+const ansContainer = document.getElementById("answer-container");
+const choiceA = document.getElementById("A");
+const choiceB = document.getElementById("B");
+const choiceC = document.getElementById("C");
+const choiceD = document.getElementById("D");
+const answers = document.getElementById("answer-btns");
+const controls = document.getElementsByClassName(".controls");
+const startbtn = document.getElementById("start-btn");
+const nextbtn = document.getElementById("next-btn");
 
 var quiz = 
 [
@@ -73,22 +78,47 @@ function setTime(){
 //start quiz button. When clicked, display question and answers. hide start button. start timer.
 startbtn.addEventListener("click", function () {
     
-    document.getElementById("start-btn").style.display = "none";
-    document.getElementById("answer-container").style.display = "initial";
+    startbtn.style.display = "none";
+    ansContainer.style.display = "initial";
     setTime();
-    displayQuiz();
+    renderQuestion();
     
 });
 
-function displayQuiz(){
-    for (let i = 0; i < quiz.length; i++){
-        document.getElementById("intro-questions").textContent = quiz[i].question;
-        document.getElementById("A").textContent = quiz[i].choiceA;
-        document.getElementById("B").textContent = quiz[i].choiceB;
-        document.getElementById("C").textContent = quiz[i].choiceC;
-        document.getElementById("D").textContent = quiz[i].choiceD;
+const lastQuestion = quiz.length -1;
+let runningQuestion = 0;
+
+function renderQuestion(){
+    let q = quiz[runningQuestion];
+
+    document.getElementById("intro-questions").innerHTML = "<p>" + q.question + "<p>";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+}
+
+//check answer
+function checkAnswer(answer) {
+    if (answer == quiz[runningQuestion].correct){
+        //answer is correct
+        score++;
+        answerCorrect();
+    }else{
+        //answer is wrong
+        seconds - 10;
+        answerWrong();
     }
 }
+// function displayQuiz(){
+//     for (let i = 0; i < quiz.length; i++){
+//         document.getElementById("intro-questions").textContent = quiz[i].question;
+//         document.getElementById("A").textContent = quiz[i].choiceA;
+//         document.getElementById("B").textContent = quiz[i].choiceB;
+//         document.getElementById("C").textContent = quiz[i].choiceC;
+//         document.getElementById("D").textContent = quiz[i].choiceD;
+//     }
+// }
 
 // clicking the answers will initiate these functions.
 function answerCorrect() {
