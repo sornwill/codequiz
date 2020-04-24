@@ -1,3 +1,7 @@
+*, *:before, *::after {
+    font-family: sans-serif;
+}
+
 body {
     text-align: center;
     font-size: 18px;
@@ -10,20 +14,31 @@ h1 {
 }
 
 h5 {
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
-#answer-container, #container{
+#container{
     text-align: center;
-    margin: 10%;
+    margin: 5%;
     border: 3px solid black;
-    border-radius: 20%;
+    border-radius: 3%;
 }
 
 #A, #B, #C, #D {
-    margin: 5%;
+    margin: 3%;
 }
 
 #answer-container{
     display: none;
 }
+
+#A-correct, #B-correct, #C-correct, #D-correct {
+    color:  green;
+    margin: 3%;
+}
+
+#A-wrong, #B-wrong, #C-wrong, #D-wrong {
+    color: red;
+    margin: 3%;
+}
+
