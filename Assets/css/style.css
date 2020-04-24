@@ -23,3 +23,7 @@ h5 {
 #A, #B, #C, #D {
     margin: 5%;
 }
+
+#answer-container{
+    display: none;
+}
