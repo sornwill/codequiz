@@ -1,4 +1,4 @@
-const timer = document.getElementsByClassName(".timer");
+const timer = document.getElementById("timer");
 const questions = document.getElementById("intro-container");
 const ansContainer = document.getElementById("answer-container");
 const choiceA = document.getElementById("A");
@@ -66,7 +66,7 @@ document.getElementById("intro-questions").innerHTML = "Welcome to the quiz.<br>
 function setTime(){
     var timerInterval = setInterval(function() {
         seconds--;
-        timer.textContent = seconds + " seconds left.";
+        timer.innerHTML = seconds + " seconds left.";
 
         if(seconds === 0) {
             clearInterval(timerInterval);
@@ -80,9 +80,9 @@ startbtn.addEventListener("click", function () {
     
     startbtn.style.display = "none";
     ansContainer.style.display = "initial";
-    setTime();
-    renderQuestion();
     
+    renderQuestion();
+    setTime();
 });
 
 const lastQuestion = quiz.length -1;
