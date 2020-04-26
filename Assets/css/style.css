@@ -28,7 +28,7 @@ h5 {
     margin: 1%;
 }
 
-#answer-container{
+#answer-container, #inputs, #add-btn{
     display: none;
 }
 
@@ -37,7 +37,7 @@ h5 {
     margin-top: 1%;
 }
 
-#high-score{
+#score{
     margin: 5%;
     text-align: center;
    
