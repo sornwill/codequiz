@@ -1,14 +1,16 @@
 const timer = document.getElementById("timer");
-const questions = document.getElementById("intro-container");
+const iQS = document.getElementById("intro-questions-score");
 const ansContainer = document.getElementById("answer-container");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const choiceD = document.getElementById("D");
 const answers = document.getElementById("answer-btns");
+const answerstat = document.getElementById("answer-status");
 const controls = document.getElementsByClassName(".controls");
 const startbtn = document.getElementById("start-btn");
 const nextbtn = document.getElementById("next-btn");
+const hiscore = document.getElementById("high-score");
 
 var quiz = 
 [
@@ -41,10 +43,10 @@ var quiz =
 
     {
         question: "4. Inside which HTML element do we put the Javascript" ,
-        choiceA: "<header>" ,
-        choiceB: "<meta>" ,
-        choiceC: "<script>" ,
-        choiceD: "<js>" ,
+        choiceA: "header" ,
+        choiceB: "meta" ,
+        choiceC: "script" ,
+        choiceD: "js" ,
         correct: "C"
     },
 
@@ -60,15 +62,19 @@ var quiz =
 
 var seconds = 60;
 var score = 0;
+var timerInterval;   
+const lastQuestion = quiz.length -1;
+let runningQuestion = 0;
 
-document.getElementById("intro-questions").innerHTML = "Welcome to the quiz.<br> You will have 60 seconds to answer all 5 questions.<br> For each wrong answer, it will take away 10 seconds.<br> Press 'Start' To Begin.";
+//intro
+startQuiz();
                     
 function setTime(){
-    var timerInterval = setInterval(function() {
+        timerInterval = setInterval(function() {
         seconds--;
         timer.innerHTML = seconds + " seconds left.";
 
-        if(seconds === 0) {
+        if(seconds <= 0) {
             clearInterval(timerInterval);
             alert("TIMES UP!");
         }
@@ -76,22 +82,26 @@ function setTime(){
 }
 
 //start quiz button. When clicked, display question and answers. hide start button. start timer.
+function startQuiz(){
+    
+    iQS.innerHTML = "Welcome to the quiz.<br> You will have 60 seconds to answer all 5 questions.<br> For each wrong answer, it will take away 10 seconds.<br> Press 'Start' To Begin.";
 startbtn.addEventListener("click", function () {
     
+    hiscore.style.display = "none";
     startbtn.style.display = "none";
     ansContainer.style.display = "initial";
-    
-    renderQuestion();
     setTime();
-});
+    renderQuestion();
+    
 
-const lastQuestion = quiz.length -1;
-let runningQuestion = 0;
+});
+};
+
 
 function renderQuestion(){
     let q = quiz[runningQuestion];
 
-    document.getElementById("intro-questions").innerHTML = "<p>" + q.question + "<p>";
+    iQS.innerHTML = "<p>" + q.question + "<p>";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
@@ -104,29 +114,36 @@ function checkAnswer(answer) {
         //answer is correct
         score++;
         answerCorrect();
+        console.log("Score is " + score);
     }else{
         //answer is wrong
-        seconds - 10;
         answerWrong();
+        seconds = seconds - 10;
+    }
+    if(runningQuestion < lastQuestion){
+        runningQuestion++;
+        renderQuestion();
+    }else{
+        clearInterval(timerInterval);
+        scoreRender();
+
     }
 }
-// function displayQuiz(){
-//     for (let i = 0; i < quiz.length; i++){
-//         document.getElementById("intro-questions").textContent = quiz[i].question;
-//         document.getElementById("A").textContent = quiz[i].choiceA;
-//         document.getElementById("B").textContent = quiz[i].choiceB;
-//         document.getElementById("C").textContent = quiz[i].choiceC;
-//         document.getElementById("D").textContent = quiz[i].choiceD;
-//     }
-// }
 
 // clicking the answers will initiate these functions.
 function answerCorrect() {
-    document.getElementById("answer-status").style.color = "green";
-    document.getElementById("answer-status").innerHTML = "Correct !";
+    answerstat.style.color = "green";
+    answerstat.innerHTML = "Correct !";
 }
 
 function answerWrong() {
-    document.getElementById("answer-status").style.color = "red";
-    document.getElementById("answer-status").innerHTML = "Incorrect !";
+    answerstat.style.color = "red";
+    answerstat.innerHTML = "Incorrect !";
+}
+
+function scoreRender(){
+    ansContainer.style.display = "none";
+    timer.style.display = "none";
+    hiscore.style.display = "initial";
+    iQS.innerHTML = "Your score is " + score + ".";   
 }
