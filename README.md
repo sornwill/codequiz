@@ -8,3 +8,4 @@
  [Code Quiz](https://sornwill.github.io/codequiz/)
  
  ## Screenshot
+![Quiz](Assets/images/quiz.png)
